@@ -35,14 +35,14 @@ gem 'jbuilder', '~> 2.7'
 gem 'bootsnap', '>= 1.4.4', require: false
 
 group :development, :test do
-  gem 'rspec-rails', '~> 5.0.0'
+  # gem 'rspec-rails', '~> 5.0.0'
   # call debugger to debug
   gem "debug", ">= 1.0.0"
 end
 
 group :development do
   # automate tests
-  gem 'guard-rspec', require: false
+  # gem 'guard-rspec', require: false
   # Access an interactive console on exception pages or by calling 'console' anywhere in the code.
   gem 'web-console', '>= 4.1.0'
   # Display performance information such as SQL time and flame graphs for each request in your browser.
@@ -59,6 +59,9 @@ group :test do
   gem 'selenium-webdriver'
   # Easy installation and use of web drivers to run system tests with browsers
   gem 'webdrivers'
+  gem 'minitest-reporters', '~> 1.5'
+  gem 'guard', '~> 2.18'
+  gem 'guard-minitest', '~> 2.4', '>= 2.4.6'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
