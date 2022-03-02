@@ -14,38 +14,70 @@
 .user-dashboard{
   display: flex;
   flex-direction: column;
-}
 
-#user-info{
-  display: flex;
-  align-items: center;
+  #user{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #d1cfe2;
+    border-radius: 10px;
+    padding: 5px;
 
-  >.gravatar{
-  }
+    >#user-info{
+        display: flex;
+        align-items: center;
 
-  >#info{
-    #username{
-      font-weight: 600;
+      >#info{
+        #username{
+          font-weight: 600;
+        }
+
+       >#email{
+          font-size: 10px;
+          font-style: italic;
+          font-weight: lighter;
+        }
+      }
     }
-    #email{
-      font-size: 10px;
-      font-style: italic;
-      font-weight: lighter;
+
+    >#account-interaction{
+      margin-left: 80px;
+      
+      >.button{
+        margin: 10px;
+      }
+    }
+  }
+
+  #toy-interaction{
+    padding: 30px;
+  }
+
+  #new-toy{
+    &:hover {
+      font-weight: 540;
+      text-decoration: none;
+      color: rgb(53, 51, 51);
+      background: transparent;
+    }
+  }
+
+  a.btn-sm {
+    &:hover {
+      font-weight: 540;
+      text-decoration: none;
+      color: whitesmoke;
+      background: transparent;
+    }
+    &:visited {
+      font-weight: 540;
+      text-decoration: none;
+      color: whitesmoke;
+      background: transparent;
     }
   }
 }
 
-#toy-interaction{
-  padding: 30px;
-}
 
-#new-toy{
-  &:hover {
-    font-weight: 540;
-    text-decoration: none;
-    color: rgb(53, 51, 51);
-    background: transparent;
-  }
-}
 
 
