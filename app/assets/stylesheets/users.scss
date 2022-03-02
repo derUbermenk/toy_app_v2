@@ -10,3 +10,42 @@
     background: transparent;
   }
 }
+
+.user-dashboard{
+  display: flex;
+  flex-direction: column;
+}
+
+#user-info{
+  display: flex;
+  align-items: center;
+
+  >.gravatar{
+  }
+
+  >#info{
+    #username{
+      font-weight: 600;
+    }
+    #email{
+      font-size: 10px;
+      font-style: italic;
+      font-weight: lighter;
+    }
+  }
+}
+
+#toy-interaction{
+  padding: 30px;
+}
+
+#new-toy{
+  &:hover {
+    font-weight: 540;
+    text-decoration: none;
+    color: rgb(53, 51, 51);
+    background: transparent;
+  }
+}
+
+
