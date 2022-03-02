@@ -1,0 +1,38 @@
+<div class="container user-dashboard">
+  <div id="user">
+      <div id="user-info">
+        <div id="user-image">
+          <%= gravatar_for(@user) %> 
+        </div>
+
+        <div id="info">
+          <span id="username"> <%= @user.name %> </span><br> 
+          <span id="email"> <%= @user.email %> </span> 
+        </div>
+      </div>
+
+      <div id="account-interaction">
+        <div class="button">
+          <%= link_to 'Edit', edit_user_path(@user), class: 'btn-sm btn-primary' %>
+        </div>
+        <div class="button">
+          <%= link_to 'Delete Account', @user, method: :delete, data: { confirm: 'Delete account?' }, class: 'btn-sm btn-primary' %> 
+        </div>
+      </div>
+  </div>
+
+  <div id="toy-interaction">
+    <% 
+      fname = @user.name.split.first
+      toy_count = @user.toys.count 
+    %>
+
+    <span id="toy-count"> <%= "#{fname} has #{pluralize(toy_count, 'toy')}" %> </span>  <br>
+    <br> 
+    <%= link_to 'Add Toy', '#', id: "new-toy", class: "btn-sm btn-primary" %>
+  </div>
+
+  <div id="toys">
+    <%= render partial: 'toys/toy', collection: @user.toys %>
+  </div>
+</div>
