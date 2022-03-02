@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  resources :users, only: %i[show edit destroy]
+  resources :users, except: :index 
   resources :toys
 
   get '/profile', to: 'users#show' # where id is current user
