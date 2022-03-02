@@ -1,3 +1,7 @@
 Rails.application.routes.draw do
-  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
+  resources :users, except: :index 
+  resources :toys
+
+  get '/profile', to: 'users#show' # where id is current user
+  root 'toys#index'
 end
