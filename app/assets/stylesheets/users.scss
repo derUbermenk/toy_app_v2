@@ -1,0 +1,12 @@
+// Place all the styles related to the Users controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: https://sass-lang.com/
+
+.user-link{
+  &:hover {
+    font-weight: 540;
+    text-decoration: none;
+    color: rgb(53, 51, 51);
+    background: transparent;
+  }
+}
