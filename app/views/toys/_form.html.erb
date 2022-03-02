@@ -1,0 +1,12 @@
+<div class="toy-form">
+  <%= form_for(toy) do |f| %>
+    <%= render 'error_messages', model: toy %>
+
+    <%= f.label :name %>
+    <%= f.text_field :name, class: 'form-control' %>
+    <%= f.label :description %>
+    <%= f.text_area :description, class: 'form-control' %>
+    <br>
+    <%= f.submit "Add toy", class: "btn btn-primary" %>
+  <% end %>
+</div>

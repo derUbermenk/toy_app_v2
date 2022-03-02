@@ -7,7 +7,7 @@
     <p class="card-text">
       <%= toy.description %> 
     </p>
-    <%= link_to 'Edit', '#', class: 'interaction-link'%>
-    <%= link_to 'Delete', '#', method: :delete, class: 'interaction-link' %>
+    <%= link_to 'Edit', edit_toy_path(toy), class: 'interaction-link'%>
+    <%= link_to 'Delete', toy, method: :delete, class: 'interaction-link', data: { confirm: 'Are you sure' } %>
   </div>
 </div>
