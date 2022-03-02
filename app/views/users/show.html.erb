@@ -13,7 +13,7 @@
 
       <div id="account-interaction">
         <div class="button">
-          <%= link_to 'Edit', '#', class: 'btn-sm btn-primary' %>
+          <%= link_to 'Edit', edit_user_path(@user), class: 'btn-sm btn-primary' %>
         </div>
         <div class="button">
           <%= link_to 'Delete Account', @user, method: :delete, data: { confirm: 'Delete account?' }, class: 'btn-sm btn-primary' %> 
