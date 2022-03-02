@@ -3,9 +3,11 @@
 
     <h5 class="card-title"><%= toy.name %> </h5>
 
-    <h6 class="card-subtitle mb-2 text-muted"> <%= link_to toy.owner.name, '#', class: 'user-link'  %> </h6>
+    <h6 class="card-subtitle mb-2 text-muted"> <%= link_to toy.owner.name, toy.owner, class: 'user-link'  %> </h6>
     <p class="card-text">
       <%= toy.description %> 
     </p>
+    <%= link_to 'Edit', '#', class: 'interaction-link'%>
+    <%= link_to 'Delete', '#', method: :delete, class: 'interaction-link' %>
   </div>
 </div>
