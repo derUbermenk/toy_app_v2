@@ -21,6 +21,11 @@ class UsersController < ApplicationController
   end
 
   def update
+    if @user.save
+      redirect_to @user
+    else
+      render 'edit'
+    end
   end
 
   def show
