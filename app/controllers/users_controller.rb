@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   before_action :set_user, only: %i[edit update show destroy]
-  before_action :authenticate_user, only: %i[edit update destroy]
+  before_action :authenticate_user, :confirm_ownership, only: %i[edit update destroy]
 
   def new
     @user = User.new
@@ -10,6 +10,7 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
      
     if @user.save
+      log_in @user
       redirect_to @user 
     else
       render 'new'
@@ -26,8 +27,10 @@ class UsersController < ApplicationController
   end
 
   def destroy
+    log_out
     @user.destroy
 
+    flash[:success] = 'Account deleted'
     redirect_to root_path
   end
 
@@ -35,6 +38,21 @@ class UsersController < ApplicationController
 
   def set_user
     @user = params[:id] ? User.find_by(id: params[:id]) : current_user 
+
+    if @user.nil?
+      flash[:warning] = 'Please login to access profile' 
+      redirect_to login_path
+    end
+  end
+
+  # confirm if the profile being edited, updated or destroyed is the current users
+  def confirm_ownership
+    if @user == current_user
+      @user #continue
+    else
+      flash[:warning] = 'You can\'t mess with other profiles' 
+      redirect_to profile_path 
+    end
   end
 
   def user_params

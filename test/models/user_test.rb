@@ -50,4 +50,14 @@ class UserTest < ActiveSupport::TestCase
       assert @user.valid?, "#{valid_address.inspect} should be valid"
     end
   end
+
+  test 'should have password and password confirmation' do
+    @user.password = @user.password_confirmation = nil
+    assert_not @user.valid?
+  end
+
+  test 'should have a minimum password lenght' do
+    @user.password = @user.password_confirmation = 'weak'
+    assert_not @user.valid?
+  end
 end

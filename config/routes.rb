@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  resources :users, except: :index 
+  resources :users, except: :index
   resources :toys
 
   get '/signup', to: 'users#new'
