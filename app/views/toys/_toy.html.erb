@@ -1,9 +1,12 @@
 <div class="toy-card card" style="width: 30rem;">
   <div class="card-body">
 
-    <h5 class="card-title"><%= toy.name %> </h5>
+    <span class="card-title"><%= toy.name %> </span>
 
-    <h6 class="card-subtitle mb-2 text-muted"> <%= link_to toy.owner.name, toy.owner, class: 'user-link'  %> </h6>
+    <div class="toy-owner">
+      <%= gravatar_for(toy.owner, size: 16) %>
+      <h6 class="card-subtitle mb-2 text-muted"> <%= link_to toy.owner.name, toy.owner, class: 'user-link'  %> </h6>
+    </div>
     <p class="card-text">
       <%= toy.description %> 
     </p>
@@ -12,5 +15,7 @@
       <%= link_to 'Edit', edit_toy_path(toy), class: 'interaction-link'%>
       <%= link_to 'Delete', toy, method: :delete, class: 'interaction-link', data: { confirm: 'Are you sure' } %>
     <% end %>
+
+    <div class="dot"></div>
   </div>
 </div>

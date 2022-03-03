@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
   before_action :set_user, only: %i[edit update show destroy]
+  before_action :authenticate_user, only: %i[edit update destroy]
 
   def new
     @user = User.new
@@ -9,7 +10,7 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
      
     if @user.save
-      redirect_to profile_path 
+      redirect_to @user 
     else
       render 'new'
     end
@@ -33,6 +34,10 @@ class UsersController < ApplicationController
   private
 
   def set_user
-    @user = User.find(params[:id])
+    @user = params[:id] ? User.find_by(id: params[:id]) : current_user 
+  end
+
+  def user_params
+    params.require(:user).permit(:name, :email, :password, :password_confirmation)
   end
 end
