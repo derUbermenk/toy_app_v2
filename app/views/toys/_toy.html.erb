@@ -8,8 +8,9 @@
       <%= toy.description %> 
     </p>
 
-    <%= link_to 'Edit', edit_toy_path(toy), class: 'interaction-link'%>
-    <%= link_to 'Delete', toy, method: :delete, class: 'interaction-link', data: { confirm: 'Are you sure' } %>
-
+    <% if current_user == toy.owner %>
+      <%= link_to 'Edit', edit_toy_path(toy), class: 'interaction-link'%>
+      <%= link_to 'Delete', toy, method: :delete, class: 'interaction-link', data: { confirm: 'Are you sure' } %>
+    <% end %>
   </div>
 </div>
