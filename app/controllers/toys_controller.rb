@@ -1,10 +1,10 @@
 class ToysController < ApplicationController
   before_action :set_toy, only: %i[edit update destroy]
-  before_action :authenticate_user, only: %i[new edit update destroy]
+  before_action :authenticate_user
   before_action :confirm_ownership, only: %i[edit update destroy]
 
   def index
-    @toys = Toy.all.includes(:owner)
+    @toys = current_user.toys
   end
 
   def new

@@ -9,6 +9,7 @@ class SessionsController < ApplicationController
     # returns nil if user is nil otherwise calls authenticate
     if user&.authenticate(params[:session][:password])
       log_in user
+      flash[:success] = "Welcome back #{user.name}!"
       redirect_to root_path 
     else
       flash.now[:danger] = 'Invalid email/password'
@@ -19,6 +20,6 @@ class SessionsController < ApplicationController
   def destroy
     log_out
     flash[:success] = 'Logged out successfully'
-    redirect_to root_path
+    redirect_to login_path 
   end
 end

@@ -1,46 +1,13 @@
 // Place all the styles related to the Toys controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: https://sass-lang.com/
-.toy-card {
-  margin: 1rem;
-  padding: 0.5rem;
-  border: 0.5px solid #d1cfe2; 
-  border-radius: 5px;
+.toys{
+  #index{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-around;
 
-  >.card-body.interaction-link{
-      &:hover {
-        font-weight: 540;
-        text-decoration: none;
-        color: rgb(53, 51, 51);
-        background: transparent;
-      }
+    padding: 2rem; 
   }
 }
-
-#toy-index{
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-evenly;
-}
-
-span.card-title{
-  font-weight: 550;
-  font-size: 15px;
-  color: #737373;
-}
-
-p.card-text{
-  color: #8c8d8f;
-}
-
-div.toy-owner{
-  margin: 2px;
-  display: flex;;
-  align-items: center;
-}
-
-.dot {
-  background-color: black;
-  border-radius: 50%;
-}
-

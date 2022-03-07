@@ -1,6 +1,9 @@
-<div class="container" >
-  <h3 class='center'><strong>Toys</strong></h3>
-  <div id="toy-index">
+<div class="container toys" >
+  <div id="index">
     <%= render partial: 'toy', collection: @toys %>
+  </div>
+
+  <div class="d-flex justify-content-center" style="padding: 2rem">
+    <%= link_to 'Add toy', new_toy_path, class: "btn btn-primary" %>
   </div>
 </div>
