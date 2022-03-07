@@ -1,6 +1,12 @@
 <div class="toy-card card" style="width: 30rem;">
   <div class="card-body">
 
+    <% toy.image.each do |image| %>
+      <div>
+        <%= image_tag url_for(image), class: 'toy-image' %>
+      </div>
+    <% end %>
+
     <span class="card-title"><%= toy.name %> </span>
 
     <div class="toy-owner">

@@ -39,8 +39,8 @@ div.toy-owner{
   align-items: center;
 }
 
-.dot {
-  background-color: black;
-  border-radius: 50%;
+.toy-image{
+  height: 200px;
+  width: 200px;
+  object-fit: contain;
 }
-
