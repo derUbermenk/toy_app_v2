@@ -1,10 +1,10 @@
 class ToysController < ApplicationController
-  before_action :set_toy, only: %i[edit update destroy]
-  before_action :authenticate_user, only: %i[new edit update destroy]
+  before_action :set_toy, only: %i[edit update destroy show]
+  before_action :authenticate_user
   before_action :confirm_ownership, only: %i[edit update destroy]
 
   def index
-    @toys = Toy.all.includes(:owner)
+    @toys = current_user.toys
   end
 
   def new
@@ -16,7 +16,7 @@ class ToysController < ApplicationController
 
     if @toy.save
       flash[:success] = 'Toy was successfully created'
-      redirect_to profile_path 
+      redirect_to dashboard_path
     else
       render 'new'
     end
@@ -28,10 +28,13 @@ class ToysController < ApplicationController
   def update
     if @toy.update(toy_params)
       flash[:success] = "#{@toy.name} successfully updated"
-      redirect_to profile_path
+      redirect_to dashboard_path
     else
       render 'edit'
     end
+  end
+
+  def show
   end
 
   def destroy 
@@ -44,7 +47,7 @@ class ToysController < ApplicationController
   private
 
   def toy_params
-    params.require(:toy).permit(:name, :description, image: [])
+    params.require(:toy).permit(:name, :description, images: [])
   end
 
   def set_toy

@@ -8,6 +8,47 @@ import Turbolinks from "turbolinks"
 import * as ActiveStorage from "@rails/activestorage"
 import "channels"
 
+import "bootstrap"
+import "../stylesheets/application"
+
 Rails.start()
 Turbolinks.start()
 ActiveStorage.start()
+
+function previewFiles() {
+
+  var preview = document.querySelector('#preview');
+  var files   = document.querySelector('input[type=file]').files;
+
+  function readAndPreview(file) {
+
+    // Make sure `file.name` matches our extensions criteria
+    if ( /\.(jpe?g|png|gif)$/i.test(file.name) ) {
+      var reader = new FileReader();
+
+      reader.addEventListener("load", function () {
+        var image = new Image();
+        //image.height = 100;
+        image.title = file.name;
+        image.src = this.result;
+        preview.appendChild( image );
+      }, false);
+
+      reader.readAsDataURL(file);
+    }
+
+  }
+
+  if (files) {
+    [].forEach.call(files, readAndPreview);
+  }
+}
+
+document.addEventListener("turbolinks:load", () => {
+  let file_input = document.querySelector('div.toy-form input[type=file]')
+  if(file_input) {
+    file_input.addEventListener('change', () => {
+      previewFiles()
+    })
+  }
+})

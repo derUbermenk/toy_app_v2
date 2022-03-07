@@ -30,7 +30,6 @@ module Sessions
     if logged_in?
       true
     else
-      flash[:warning] = 'You need to sign in before you do that'
       redirect_to login_path
     end
   end

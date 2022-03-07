@@ -1,0 +1,42 @@
+<div class="container toy-show">
+
+  <div class="container toy-info card center my-3 text-center">
+    <span class="fw-bolder mt-2 fs-5"><%= @toy.name %></span>
+    <hr>
+    <div>
+      <p class="fst-italic fw-lighter fs-6"><%= @toy.description %></p>
+    </div>
+  </div>
+
+  <div class="card text-center">
+    <div class="card-header">
+      <ul class="nav nav-pills card-header-pills">
+        <li class="nav-item">
+          <%= link_to '#', class:"nav-link active" do %>
+            <%= image_tag 'list.svg' %> 
+          <% end %>
+        </li>
+
+        <li class="nav-item">
+          <%= link_to '#', class:"nav-link" do %>
+            <%= image_tag 'grid.svg' %> 
+          <% end %>
+        </li>
+
+      </ul>
+    </div>
+
+    <div class="card-body d-flex align-items-center flex-column">
+      <% @toy.images.each do |image| %>
+        <div class="card toy-image my-2">
+          <div class="card-body d-flex flex-row-reverse">
+            <%= image_tag 'trash.svg', class: 'img-interaction-button' %>
+            <%= image_tag 'share-2.svg', class: 'img-interaction-button' %>
+          </div>
+          <%= image_tag url_for(image), class: "card-img-bottom" %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+
+</div>

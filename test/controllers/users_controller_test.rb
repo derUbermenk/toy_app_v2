@@ -25,6 +25,7 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
   end
 
   test 'it should get show' do
+    login(@user.email, @user.password)
     get user_path(@user.id)
 
     assert_response :success
@@ -95,7 +96,7 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
     follow_redirect!
 
     # redirects to profile
-    assert_template 'toys/index'
+    assert_template 'sessions/new'
     assert_select 'div.alert.alert-success', 'Account deleted'
   end
 end

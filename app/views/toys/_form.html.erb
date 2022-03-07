@@ -2,21 +2,23 @@
   <%= form_for(toy) do |f| %>
     <%= render 'error_messages', model: toy %>
 
-    <div class="field">
+    <div class="field my-3">
       <%= f.label :name %>
-      <%= f.text_field :name, class: 'form-control' %>
+      <%= f.text_field :name, class: 'form-control', autocomplete: "off" %>
     </div>
 
-    <div class="field">
+    <div class="field my-3">
       <%= f.label :description %>
       <%= f.text_area :description, class: 'form-control' %>   
     </div>
 
-    <div class="field">
-      <%= f.label :image %> 
-      <%= f.file_field :image, multiple: true %>
+    <div class="field my-3">
+      <%= f.label :images, class: "form-label" %>
+      <%= f.file_field :images, class: "form-control form-control-sm", multiple: true %>
     </div>
 
+    <div id="preview" class="d-flex justify-content-center flex-wrap">
+    </div>
 
     <%= f.submit class: "btn btn-primary", style: 'margin-top: 5px' %>
   <% end %>
