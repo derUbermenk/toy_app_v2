@@ -5,10 +5,6 @@ ruby '3.0.3'
 
 # handle authentication
 gem 'bcrypt', '~> 3.1', '>= 3.1.16' 
-# 
-gem 'jquery-rails'
-# for styling
-gem 'bootstrap-sass', '~> 3.4', '>= 3.4.1'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails', branch: 'main'
 gem 'rails', '~> 6.1.4', '>= 6.1.4.6'
 # Use postgresql as the database for Active Record
@@ -50,6 +46,8 @@ group :development do
   # Can be configured to work on production as well see: https://github.com/MiniProfiler/rack-mini-profiler/blob/master/README.md
   gem 'rack-mini-profiler', '~> 2.0'
   gem 'listen', '~> 3.3'
+  gem 'guard-livereload', '~> 2.5', require: false
+  gem "rack-livereload"
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
 end
