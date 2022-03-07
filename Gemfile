@@ -64,6 +64,7 @@ group :test do
   gem 'guard', '~> 2.18'
   gem 'guard-minitest', '~> 2.4', '>= 2.4.6'
   gem "factory_bot_rails"
+  gem 'rails-controller-testing'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem

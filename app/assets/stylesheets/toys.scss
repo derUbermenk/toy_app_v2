@@ -23,3 +23,24 @@
   justify-content: space-evenly;
 }
 
+span.card-title{
+  font-weight: 550;
+  font-size: 15px;
+  color: #737373;
+}
+
+p.card-text{
+  color: #8c8d8f;
+}
+
+div.toy-owner{
+  margin: 2px;
+  display: flex;;
+  align-items: center;
+}
+
+.dot {
+  background-color: black;
+  border-radius: 50%;
+}
+

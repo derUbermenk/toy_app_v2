@@ -12,11 +12,13 @@ require 'faker'
   
   name = Faker::Name.unique.name
   email = Faker::Internet.email(name: name)
-  # password = 
+  password = 'password'
 
   User.create!(
     name:  name,
-    email: email
+    email: email,
+    password: password,
+    password_confirmation: password
   )
 end
 

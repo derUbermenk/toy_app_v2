@@ -3,11 +3,11 @@
     <strong> <%= link_to "Toy App", root_path, class: 'navbar-brand' %> </strong>
     <nav>
     <ul class="nav navbar-nav navbar-right">
-      <% if nil %> <!-- change this -->
-        <li><%= link_to 'Profile', '#' %> </li>
-        <li><%= link_to 'Log Out', '#' %> </li>
+      <% if logged_in? %> <!-- change this -->
+        <li><%= link_to 'Profile', profile_path %> </li>
+        <li><%= link_to 'Log Out',  logout_path, method: :delete, data: { confirm: 'are you sure' } %> </li>
       <% else %>
-        <li><%= link_to 'Log In', '#' %> </li>
+        <li><%= link_to 'Log In', login_path %> </li>
       <% end%>
     </ul>
     </nav>
