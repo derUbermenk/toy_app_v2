@@ -1,0 +1,9 @@
+<div class="card toy-image my-2" id="img-card-<%=image.id%>">
+  <div class="card-body d-flex flex-row-reverse">
+    <%= link_to delete_image_path(image.id), method: :delete, remote: true do %>
+      <%= image_tag 'trash.svg', class: 'img-interaction-button delete', id: image.id %>
+    <% end %>
+      <%= image_tag 'share-2.svg', class: 'img-interaction-button share', id: image.id %>
+  </div>
+  <%= image_tag url_for(image), class: "card-img-bottom" %>
+</div>

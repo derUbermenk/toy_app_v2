@@ -39,8 +39,9 @@
     img.card-img-bottom{
       object-fit: contain;
     }
-
   }
 
-
+  a.nav-link.active{
+    background-color: rgba(125, 125, 125, 0.139);
+  }
 }
