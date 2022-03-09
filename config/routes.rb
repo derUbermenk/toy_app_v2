@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
   resources :users, except: :index
+
   resources :toys
+  delete '/:id/image', to: 'toys#destroy_image', as: 'delete_image'
 
   get '/signup', to: 'users#new'
   get '/login', to: 'sessions#new'

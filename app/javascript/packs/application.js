@@ -15,6 +15,7 @@ Rails.start()
 Turbolinks.start()
 ActiveStorage.start()
 
+// file preview 
 function previewFiles() {
 
   var preview = document.querySelector('#preview');
@@ -44,11 +45,37 @@ function previewFiles() {
   }
 }
 
-document.addEventListener("turbolinks:load", () => {
+function toy_form_photo_upload() {
+
   let file_input = document.querySelector('div.toy-form input[type=file]')
   if(file_input) {
     file_input.addEventListener('change', () => {
       previewFiles()
     })
   }
-})
+
+}
+
+// delete button
+function photo_delete_button_click() {
+  let toy_show = document.querySelector('.toy-show')
+  // check if in toy_show indeed
+  if(toy_show){
+    toy_show.addEventListener('click', (e) => {
+      let clicked_element_class = e.target.className
+      let clicked_element_id = e.target.id
+      // detecting image 
+      // console.log(e.target.className)
+      if(clicked_element_class==='img-interaction-button delete'){
+        let image_card = document.getElementById(`img-card-${clicked_element_id}`)
+        // console.log(image_card)
+        image_card.remove()
+      }
+    })
+  }
+}
+
+
+// event listeners
+document.addEventListener("turbolinks:load", toy_form_photo_upload )
+document.addEventListener("turbolinks:load", photo_delete_button_click )

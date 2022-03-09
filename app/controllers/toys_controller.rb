@@ -44,6 +44,16 @@ class ToysController < ApplicationController
     redirect_to root_path
   end
 
+  def destroy_image
+    @image = ActiveStorage::Attachment.find(params[:id])
+    @image.purge
+
+    respond_to do |format|
+      format.js {}
+      format.html{ redirect_back(fallback_location: request.referrer) }
+    end
+  end
+
   private
 
   def toy_params
