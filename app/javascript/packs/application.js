@@ -45,11 +45,21 @@ function previewFiles() {
   }
 }
 
+function display_preview_container() {
+  let file_preview_container = document.querySelector(
+    '#image-preview-container'
+  )
+
+  // make visible
+  file_preview_container.className = 'container'
+}
+
 function toy_form_photo_upload() {
 
   let file_input = document.querySelector('div.toy-form input[type=file]')
   if(file_input) {
     file_input.addEventListener('change', () => {
+      display_preview_container()
       previewFiles()
     })
   }
