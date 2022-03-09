@@ -14,12 +14,13 @@
 
     <div class="field my-3">
       <%= f.label :images, class: "form-label" %>
-      <%= f.file_field :images, class: "form-control form-control-sm", multiple: true %>
+      <%= f.file_field :images, class: "form-control form-control-sm", multiple: true, id: 'image-upload-field' %>
     </div>
 
     <div class="container d-none" id="image-preview-container">
-      <div id="preview" class="d-flex justify-content-center flex-wrap">
-      </div>   
+      <div class="float-end btn" id="clear-upload-button"><%= image_tag 'x-circle' %> Clear</div>
+      <div id="preview" class="d-flex justify-content-center flex-wrap" style>
+      </div>
     </div>
 
 

@@ -23,10 +23,11 @@
           <%= render 'error_messages', model: @toy %>
 
           <div class="field my-3">
-            <%= f.file_field :images, class: "form-control form-control-sm", multiple: true %>
+            <%= f.file_field :images, class: "form-control form-control-sm", multiple: true, id: 'image-upload-field' %>
           </div>
 
           <div class="container d-none" id="image-preview-container">
+            <div class="float-end btn" id="clear-upload-button"><%= image_tag 'x-circle' %> Clear</div>
             <div id="preview" class="d-flex justify-content-center flex-wrap" style>
             </div>
           </div>

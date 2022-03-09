@@ -21,6 +21,8 @@ function previewFiles() {
   var preview = document.querySelector('#preview');
   var files   = document.querySelector('input[type=file]').files;
 
+  console.log(files)
+
   function readAndPreview(file) {
 
     // Make sure `file.name` matches our extensions criteria
@@ -54,6 +56,31 @@ function display_preview_container() {
   file_preview_container.className = 'container'
 }
 
+function clear_uploads() {
+  let image_upload_field = document.querySelector('#image-upload-field')
+  let image_preview_container = document.querySelector('#image-preview-container')
+  let image_preview_image_list = document.querySelector('#preview')
+
+  // clear images
+  image_preview_image_list.innerHTML = ''
+  image_upload_field.value = ''
+  image_preview_container.className += ' d-none'
+}
+
+
+function clear_upload_click() {
+  let clear_upload_button = document.querySelector('#clear-upload-button')
+  
+
+  if(clear_upload_button){
+    clear_upload_button.addEventListener('click', () => {
+      console.log(clear_upload_button)
+      // clear file upload field
+      clear_uploads()
+    })
+  }
+}
+
 function toy_form_photo_upload() {
 
   let file_input = document.querySelector('div.toy-form input[type=file]')
@@ -85,7 +112,7 @@ function photo_delete_button_click() {
   }
 }
 
-
 // event listeners
 document.addEventListener("turbolinks:load", toy_form_photo_upload )
+document.addEventListener("turbolinks:load",  clear_upload_click)
 document.addEventListener("turbolinks:load", photo_delete_button_click )
