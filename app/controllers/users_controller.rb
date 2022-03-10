@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
   before_action :set_user, only: %i[edit update show destroy]
-  before_action :authenticate_user, :confirm_ownership, only: %i[edit update destroy]
+  before_action :authenticate_user, except: %i[new create]
+  before_action :confirm_ownership, only: %i[edit update destroy]
 
   def new
     @user = User.new
@@ -36,7 +37,7 @@ class UsersController < ApplicationController
     @user.destroy
 
     flash[:success] = 'Account deleted'
-    redirect_to root_path
+    redirect_to login_path
   end
 
   private

@@ -1,15 +1,31 @@
-<header class="navbar navbar-fixed-top navbar-inverse">
-  <div class="container">
-    <strong> <%= link_to "Toy App", root_path, class: 'navbar-brand' %> </strong>
-    <nav>
-    <ul class="nav navbar-nav navbar-right">
-      <% if logged_in? %> <!-- change this -->
-        <li><%= link_to 'Profile', profile_path %> </li>
-        <li><%= link_to 'Log Out',  logout_path, method: :delete, data: { confirm: 'are you sure' } %> </li>
-      <% else %>
-        <li><%= link_to 'Log In', login_path %> </li>
-      <% end%>
-    </ul>
-    </nav>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <div class="container-fluid">
+    <a class="navbar-brand fw-bold" href="#">Toy App</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <%= link_to 'Dashboard', dashboard_path, class: "nav-link active", 
+                      aria: { current: 'page' } 
+          %>
+        </li>
+        <li class="nav-item dropdown">
+          <%= link_to 'Profile', '#', class: "nav-link dropdown-toggle",
+                      id: "navbarDropdown", role: "button", 'data-bs-toggle': "dropdown", 'aria-expanded': "false"
+          %>
+          <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <%= link_to 'Account', profile_path, class: 'dropdown-item' %>
+            <li><hr class="dropdown-divider"></li>
+            <%= link_to 'Log Out', logout_path, method: :delete, class: 'dropdown-item' %>
+          </ul>
+        </li>
+      </ul>
+      <form class="d-flex">
+        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+        <button class="btn btn-outline-success" type="submit">Search</button>
+      </form>
+    </div>
   </div>
-</header>
+</nav>

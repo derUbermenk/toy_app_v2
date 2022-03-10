@@ -1,10 +1,10 @@
 class ToysController < ApplicationController
-  before_action :set_toy, only: %i[edit update destroy]
-  before_action :authenticate_user, only: %i[new edit update destroy]
+  before_action :set_toy, only: %i[edit update destroy show]
+  before_action :authenticate_user
   before_action :confirm_ownership, only: %i[edit update destroy]
 
   def index
-    @toys = Toy.all.includes(:owner)
+    @toys = current_user.toys
   end
 
   def new
@@ -16,7 +16,7 @@ class ToysController < ApplicationController
 
     if @toy.save
       flash[:success] = 'Toy was successfully created'
-      redirect_to profile_path 
+      redirect_to dashboard_path
     else
       render 'new'
     end
@@ -26,12 +26,23 @@ class ToysController < ApplicationController
   end
 
   def update
-    if @toy.update(toy_params)
+    # add image of toy has image attributes
+    if params[:toy].nil?
+      flash[:warning] = "Can't update with no images attached"
+      redirect_back(fallback_location: @toy)
+    elsif params[:toy][:images]
+      add_images
+    # update toys text attribtes: name and description
+    elsif @toy.update(toy_update_params)
       flash[:success] = "#{@toy.name} successfully updated"
-      redirect_to profile_path
+      redirect_to @toy 
+    # else rerender edit page
     else
       render 'edit'
     end
+  end
+
+  def show
   end
 
   def destroy 
@@ -41,9 +52,25 @@ class ToysController < ApplicationController
     redirect_to root_path
   end
 
+  def destroy_image
+    @image = ActiveStorage::Attachment.find(params[:id])
+    @image.purge
+
+    respond_to do |format|
+      format.js {}
+      format.html{ redirect_back(fallback_location: request.referrer) }
+    end
+  end
+
   private
 
   def toy_params
+    params.require(:toy).permit(:name, :description, images: [])
+  end
+
+  def toy_params_update
+    # do not allow images field on toy update
+    #   will delete previous images
     params.require(:toy).permit(:name, :description)
   end
 
@@ -57,6 +84,16 @@ class ToysController < ApplicationController
     else
       flash[:warning] = 'You can only play with your own toys'
       redirect_to profile_path
+    end
+  end
+
+  def add_images
+    @images = params[:toy][:images]
+
+    if @toy.images.attach(@images)
+      render partial: 'image', collection: @toy.images.where('created_at > ?', 4.seconds.ago)
+    else
+      render 'application/error_messages', model: @toy, status: :bad_request
     end
   end
 end

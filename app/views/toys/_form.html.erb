@@ -2,10 +2,30 @@
   <%= form_for(toy) do |f| %>
     <%= render 'error_messages', model: toy %>
 
-    <%= f.label :name %>
-    <%= f.text_field :name, class: 'form-control' %>
-    <%= f.label :description %>
-    <%= f.text_area :description, class: 'form-control' %>
+    <div class="field my-3">
+      <%= f.label :name %>
+      <%= f.text_field :name, class: 'form-control', autocomplete: "off" %>
+    </div>
+
+    <div class="field my-3">
+      <%= f.label :description %>
+      <%= f.text_area :description, class: 'form-control' %>   
+    </div>
+
+
+
+    <% if action_name == 'new' %>
+      <div class="field my-3">
+        <%= f.label :images, class: "form-label" %>
+        <%= f.file_field :images, class: "form-control form-control-sm", multiple: true, id: 'image-upload-field' %>
+      </div>
+
+      <div class="container d-none" id="image-preview-container">
+        <div class="float-end btn" id="clear-upload-button"><%= image_tag 'x-circle' %> Clear</div>
+        <div id="preview" class="d-flex justify-content-center flex-wrap" style>
+        </div>
+      </div>
+    <% end %>
 
     <%= f.submit class: "btn btn-primary", style: 'margin-top: 5px' %>
   <% end %>

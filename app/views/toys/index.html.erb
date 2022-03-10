@@ -1,6 +1,15 @@
-<div class="container" >
-  <h3 class='center'><strong>Toys</strong></h3>
-  <div id="toy-index">
+<div class="container toys" >
+
+  <div id="index" class="d-flex justify-content-center flex-wrap">
     <%= render partial: 'toy', collection: @toys %>
+  </div>
+
+  <hr>
+
+  <div class="d-flex justify-content-center" style="padding: 2rem">
+    <%= link_to new_toy_path, class: "btn border" do %>
+      <%= image_tag 'truck.svg', class: "button-icon" %>
+      Add toy
+    <% end %>
   </div>
 </div>
