@@ -3,7 +3,9 @@
     <%= link_to delete_image_path(image.id), method: :delete, remote: true do %>
       <%= image_tag 'trash.svg', class: 'img-interaction-button delete', id: image.id %>
     <% end %>
+    <%= link_to delete_image_path(image.id), method: :delete, remote: true do %>
       <%= image_tag 'share-2.svg', class: 'img-interaction-button share', id: image.id %>
+    <% end %>
   </div>
-  <%= image_tag url_for(image), class: "card-img-bottom" %>
+  <%= image_tag url_for(image), class: "card-img-bottom", onerror:"this.onerror=null; this.src='#{random_image}'" %>
 </div>

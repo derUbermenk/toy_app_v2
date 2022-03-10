@@ -28,7 +28,7 @@ class ToysController < ApplicationController
   def update
     # add image of toy has image attributes
     if params[:toy].nil?
-      flash[:warning] = "Can't update with no images attached"
+      flash[:warning] = "Can't update with no params"
       redirect_back(fallback_location: @toy)
     elsif params[:toy][:images]
       add_images

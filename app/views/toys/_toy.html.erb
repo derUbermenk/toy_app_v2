@@ -22,11 +22,11 @@
           <% toy.images.each_with_index do |image, index| %>
             <% if index == 0 %> 
               <div class="carousel-item active">
-                <img src=<%= url_for(image) %> class="d-block w-100" alt="...">
+                <img src=<%= url_for(image) %> class="d-block w-100" alt="..." onerror="this.onerror=null; this.src='<%= random_image %>'">
               </div>
             <% else %>
               <div class="carousel-item">
-                <img src=<%= url_for(image) %> class="d-block w-100" alt="...">
+                <img src=<%= url_for(image) %> class="d-block w-100" alt="..." onerror="this.onerror=null; this.src='<%= random_image %>'">
               </div>
             <% end %>
           <% end %>
