@@ -9,10 +9,10 @@
     </div>
     <div class="col-2 d-flex align-items-end flex-column">
       <%= link_to edit_user_path(current_user), class: 'btn btn-sm' do %>
-        <%= image_tag 'settings', style: 'height: 16px; width: 16px;'%>
+        <%= image_tag 'settings.svg', style: 'height: 16px; width: 16px;'%>
       <% end %>
       <%= link_to current_user, method: :delete, remote: true, class: 'btn  btn-sm' do %>
-        <%= image_tag 'trash'%>
+        <%= image_tag 'trash.svg'%>
       <% end %>
     </div>
   </div>

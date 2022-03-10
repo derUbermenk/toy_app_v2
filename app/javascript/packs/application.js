@@ -100,7 +100,7 @@ function image_preview() {
   }
   }
 
-  let file_input = document.querySelector('div.toy-form ')
+  let file_input = document.querySelector('#image-upload-field')
   if(file_input) {
     file_input.addEventListener('change', () => {
       previewFiles()
