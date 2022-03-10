@@ -1,0 +1,5 @@
+<div class="container d-flex flex-wrap justify-content-center">
+  <% images.each do |image| %>
+    <img src=<%= url_for(image) %> class="mx-2 my-1" alt="..." onerror="this.onerror=null; this.src='<%= random_image %>'">
+  <% end %>
+</div>

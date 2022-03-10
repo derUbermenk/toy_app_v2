@@ -26,27 +26,44 @@
 }
 
 .toy-show{
-  .toy-image{
-    width: 90%;
+  div#list-view.image-view{
+    .toy-image{
+      width: 90%;
 
-    img.img-interaction-button{
-      margin: 0 5px;
-      background-color: rgba(125, 125, 125, 0.139);
-      padding: 10px;
-      border-radius: 50%;
+      img.img-interaction-button{
+        margin: 0 5px;
+        background-color: rgba(125, 125, 125, 0.139);
+        padding: 10px;
+        border-radius: 50%;
 
-      &:hover{
-        outline: 2px;
-        background-color: rgba(121, 121, 121, 0.502);
+        &:hover{
+          outline: 2px;
+          background-color: rgba(121, 121, 121, 0.502);
+        }
+      }
+
+      img.card-img-bottom{
+        object-fit: contain;
       }
     }
+  }
 
-    img.card-img-bottom{
-      object-fit: contain;
+  div#carousel-view.image-view{
+    img{
+      object-fit:contain; 
+      height: 650px;
     }
   }
 
-  a.nav-link.active{
+  div#grid-view.image-view{
+    img{
+      object-fit: contain;
+      height: 200px;
+    }
+  }
+
+  div.nav-link.active{
     background-color: rgba(125, 125, 125, 0.139);
   }
+
 }

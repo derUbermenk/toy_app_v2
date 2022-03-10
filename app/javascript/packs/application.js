@@ -30,8 +30,6 @@ function upload_button_toggle(caller) {
     console.log(`upload_button_status ${upload_button.disabled}`)
 }
 
-
-
 // clear images for upload
 function clear_upload_click() {
   function clear_uploads() {
@@ -193,9 +191,56 @@ function delete_toy_image() {
   }
 }
 
+// toggle between views
+function view_toggle() {
+
+  function switch_toggles(clicked_toggle){
+    // set the clicked toggle class active
+    clicked_toggle.className = "nav-link view-toggle active"
+
+    // set other toggles to inactive
+    Array.from(document.querySelectorAll(`.view-toggle:not(#${clicked_toggle.id})`)).forEach(
+      toggle => toggle.className = "nav-link view-toggle"
+    )
+  }
+
+  function switch_views(element_id) {
+    // find toggled view
+    let toggled_view = document.querySelector(`.image-view#${element_id}`) 
+
+    // set the toggled view to not have style display:none 
+    toggled_view.className = 'image-view'
+
+    // set all untoggled views to have style display:none through the bootstrap class d-none
+    Array.from(document.querySelectorAll(`.image-view:not(#${toggled_view.id})`)).forEach(
+      untoggled_view => untoggled_view.className = "image-view d-none"
+    )
+  }
+
+  let view_toggles = document.querySelector('#view-toggles')
+
+  view_toggles.addEventListener('click', (event) => {
+    let event_target = event.target
+
+    if (event_target.className === 'nav-link view-toggle') {
+      switch_toggles(event_target)
+      switch_views(event_target.id)
+
+    // handle if the the event clicked the image inside the
+    // the navlink  
+    } else if(event_target.nodeName === 'IMG') {
+      // use the parent element
+      switch_toggles(event_target.parentElement)
+      switch_views(event_target.parentElement.id)
+    } else {
+      return;
+    }
+  })
+}
+
 // event listeners
 document.addEventListener("turbolinks:load", image_preview)
 document.addEventListener("turbolinks:load", clear_upload_click)
 document.addEventListener("turbolinks:load", delete_toy_image)
 document.addEventListener("turbolinks:load", toy_image_submit)
-
+document.addEventListener("turbolinks:load", view_toggle)
