@@ -26,9 +26,17 @@ class ToysController < ApplicationController
   end
 
   def update
-    if @toy.update(toy_params)
+    # add image of toy has image attributes
+    if params[:toy].nil?
+      flash[:warning] = "Can't update with no images attached"
+      redirect_back(fallback_location: @toy)
+    elsif params[:toy][:images]
+      add_images
+    # update toys text attribtes: name and description
+    elsif @toy.update(toy_update_params)
       flash[:success] = "#{@toy.name} successfully updated"
-      redirect_to dashboard_path
+      redirect_to @toy 
+    # else rerender edit page
     else
       render 'edit'
     end
@@ -60,6 +68,12 @@ class ToysController < ApplicationController
     params.require(:toy).permit(:name, :description, images: [])
   end
 
+  def toy_params_update
+    # do not allow images field on toy update
+    #   will delete previous images
+    params.require(:toy).permit(:name, :description)
+  end
+
   def set_toy
     @toy = Toy.find(params[:id])
   end
@@ -70,6 +84,16 @@ class ToysController < ApplicationController
     else
       flash[:warning] = 'You can only play with your own toys'
       redirect_to profile_path
+    end
+  end
+
+  def add_images
+    @images = params[:toy][:images]
+
+    if @toy.images.attach(@images)
+      render partial: 'image', collection: @toy.images.where('created_at > ?', 4.seconds.ago)
+    else
+      render 'application/error_messages', model: @toy, status: :bad_request
     end
   end
 end

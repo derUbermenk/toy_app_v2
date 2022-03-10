@@ -15,8 +15,61 @@ Rails.start()
 Turbolinks.start()
 ActiveStorage.start()
 
-// file preview 
-function previewFiles() {
+
+
+// toggle button depending on state of file field
+function upload_button_toggle(caller) {
+    let upload_button = document.querySelector('#upload-button')
+    let file_field = document.querySelector('#image-upload-field')
+
+    // keep button disabled if file field empty
+    upload_button.disabled = (file_field.value == '') ? true : false
+
+    console.log(`called from: ${caller}`)
+    console.log(`file field value: ${file_field.value}`)
+    console.log(`upload_button_status ${upload_button.disabled}`)
+}
+
+
+
+// clear images for upload
+function clear_upload_click() {
+  function clear_uploads() {
+    let image_upload_field = document.querySelector('#image-upload-field')
+    let image_preview_container = document.querySelector('#image-preview-container')
+    let image_preview_image_list = document.querySelector('#preview')
+
+    // clear images
+    image_preview_image_list.innerHTML = ''
+    image_upload_field.value = ''
+    image_preview_container.className += ' d-none'
+  }
+
+  let clear_upload_button = document.querySelector('#clear-upload-button')
+
+  if(clear_upload_button){
+    clear_upload_button.addEventListener('click', () => {
+      // clear file upload field
+      clear_uploads()
+      // 
+      upload_button_toggle('clear upload click')
+    })
+  }
+}
+
+// preview images
+function image_preview() {
+
+  function display_preview_container() {
+    let file_preview_container = document.querySelector(
+      '#image-preview-container'
+    )
+
+    // make visible
+    file_preview_container.className = 'container'
+  }
+
+  function previewFiles() {
 
   var preview = document.querySelector('#preview');
   var files   = document.querySelector('input[type=file]').files;
@@ -45,56 +98,84 @@ function previewFiles() {
   if (files) {
     [].forEach.call(files, readAndPreview);
   }
-}
-
-function display_preview_container() {
-  let file_preview_container = document.querySelector(
-    '#image-preview-container'
-  )
-
-  // make visible
-  file_preview_container.className = 'container'
-}
-
-function clear_uploads() {
-  let image_upload_field = document.querySelector('#image-upload-field')
-  let image_preview_container = document.querySelector('#image-preview-container')
-  let image_preview_image_list = document.querySelector('#preview')
-
-  // clear images
-  image_preview_image_list.innerHTML = ''
-  image_upload_field.value = ''
-  image_preview_container.className += ' d-none'
-}
-
-
-function clear_upload_click() {
-  let clear_upload_button = document.querySelector('#clear-upload-button')
-  
-
-  if(clear_upload_button){
-    clear_upload_button.addEventListener('click', () => {
-      console.log(clear_upload_button)
-      // clear file upload field
-      clear_uploads()
-    })
   }
-}
 
-function toy_form_photo_upload() {
-
-  let file_input = document.querySelector('div.toy-form input[type=file]')
+  let file_input = document.querySelector('div.toy-form ')
   if(file_input) {
     file_input.addEventListener('change', () => {
-      display_preview_container()
       previewFiles()
+      display_preview_container()
+      upload_button_toggle('image_preview')
     })
   }
-
 }
 
-// delete button
-function photo_delete_button_click() {
+// append new photos to view
+function toy_image_submit(){
+  function clear_uploads() {
+    let image_upload_field = document.querySelector('#image-upload-field')
+    let image_preview_container = document.querySelector('#image-preview-container')
+    let image_preview_image_list = document.querySelector('#preview')
+
+    // clear images
+    image_preview_image_list.innerHTML = ''
+    image_upload_field.value = ''
+    image_preview_container.className += ' d-none'
+  }
+
+  function display_new_images(event){
+    // const [data, status, xhr] = event.detail;
+    const xhr = event.detail[2];
+
+    // create temporary xhr.response parent
+    let temp_parent = document.createElement('div')
+    // converts xhr response to images cards
+    temp_parent.innerHTML = xhr.response  
+
+    // get the image cards
+    // use array for to convert to array and allow forEach method
+    let images_container = document.querySelector('#images-container')
+    let image_cards = Array.from(temp_parent.children)
+
+    image_cards.forEach(image_card => images_container.prepend(image_card))
+  }
+
+  function display_error(event){
+    const xhr = event.detail[2];
+
+    // create temporary xhr.response parent
+    let temp_parent = document.createElement('div')
+    // converts xhr response to images cards
+    temp_parent.innerHTML = xhr.response  
+
+    // get the image cards
+    // use array for to convert to array and allow forEach method
+    let toy_show = document.querySelector('.toy-show')
+    let errors = Array.from(temp_parent.children)
+
+    errors.forEach(error_message => toy_show.prepend(error_message))
+  }
+
+  let toy_form = document.querySelector('.toy-form form')
+
+  if(toy_form) {
+    toy_form.addEventListener("submit", ()=> {
+      document.addEventListener('ajax:success', (e) => { 
+        display_new_images(e) 
+        // clear file upload field
+        clear_uploads()
+        // 
+        upload_button_toggle('Submit')
+      })
+      document.addEventListener('ajax:error', (e) => { 
+        display_error(e) 
+      })
+    })
+  }
+}
+
+// delete a toy image
+function delete_toy_image() {
   let toy_show = document.querySelector('.toy-show')
   // check if in toy_show indeed
   if(toy_show){
@@ -113,6 +194,8 @@ function photo_delete_button_click() {
 }
 
 // event listeners
-document.addEventListener("turbolinks:load", toy_form_photo_upload )
-document.addEventListener("turbolinks:load",  clear_upload_click)
-document.addEventListener("turbolinks:load", photo_delete_button_click )
+document.addEventListener("turbolinks:load", image_preview)
+document.addEventListener("turbolinks:load", clear_upload_click)
+document.addEventListener("turbolinks:load", delete_toy_image)
+document.addEventListener("turbolinks:load", toy_image_submit)
+
