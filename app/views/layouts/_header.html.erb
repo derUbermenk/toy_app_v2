@@ -1,6 +1,10 @@
+<% unless (controller_name == 'sessions') || (controller_name == 'users' && action_name == 'new') %>
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
   <div class="container-fluid">
-    <a class="navbar-brand fw-bold" href="#">Toy App</a>
+    <a class="navbar-brand fw-bold" href="#">
+      <%= image_tag 'logo.svg' %>
+      Toy App
+    </a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -16,7 +20,7 @@
                       id: "navbarDropdown", role: "button", 'data-bs-toggle': "dropdown", 'aria-expanded': "false"
           %>
           <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <%= link_to 'Account', current_user, class: 'dropdown-item' %>
+            <%= link_to 'Account', profile_path, class: 'dropdown-item' %>
             <li><hr class="dropdown-divider"></li>
             <%= link_to 'Log Out', logout_path, method: :delete, class: 'dropdown-item' %>
           </ul>
@@ -29,3 +33,4 @@
     </div>
   </div>
 </nav>
+<% end %>
