@@ -19,8 +19,14 @@ class ActiveSupport::TestCase
     !session[:user_id].nil?
   end
 
-  def login(user)
-    session[:user_id] = user.id
+  def login(user, password: 'password', remember_me: '1')
+    post login_path params: {
+      session: {
+        email: user.email,
+        password: password,
+        remember_me: remember_me
+      }
+    }
   end
 end
 

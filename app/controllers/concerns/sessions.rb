@@ -49,10 +49,22 @@ module Sessions
   end
 
   def authenticate_user
-    if logged_in?
-      true
-    else
+    unless logged_in?
+      store_location
+      flash[:danger] = 'Please log in.'
       redirect_to login_path
     end
+  end
+
+  # redirects to stored location (or to default).
+  def redirect_back_or(default)
+    redirect_to(session[:forwarding_url] || default) # if forwarding url nil, redirect to default
+    session.delete(:forwarding_url)                  # delete the forwarding url on redirect 
+  end
+
+  # store the url, trying to be accessed
+  # if only the request is get.
+  def store_location
+    session[:forwarding_url] = request.original_url if request.get?
   end
 end
