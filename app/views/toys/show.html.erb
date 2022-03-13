@@ -75,10 +75,8 @@
         <p class='fst-italic fw-lighter'><%= @toy.name %> has no images</p>
       <% end %>
 
-      <div id="list-view" class="image-view">
-        <div class="d-flex align-items-center flex-column ">
-          <%= render partial: 'image', collection: @toy.images.order(created_at: :desc) %>
-        </div>
+      <div id="list-view" class="image-view d-flex align-items-center flex-column">
+        <%= render partial: 'image', collection: @toy.images.order(created_at: :desc) %>
       </div>
 
       <div id="carousel-view" class="image-view d-none">

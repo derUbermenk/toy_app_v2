@@ -132,7 +132,7 @@ function toy_image_submit(){
 
     // get the image cards
     // use array for to convert to array and allow forEach method
-    let images_container = document.querySelector('#images-container')
+    let images_container = document.querySelector('div.image-view#list-view')
     let image_cards = Array.from(temp_parent.children)
 
     image_cards.forEach(image_card => images_container.prepend(image_card))
