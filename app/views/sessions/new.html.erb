@@ -1,13 +1,21 @@
-<h1>Log in</h1>
-<div class="row">
-  <div class="col-md-6 col-md-offset-3">
+<div class="container mt-5">
+  <h1>Log in</h1>
+
+  <div class="container">
     <%= form_for(:session, url: login_path) do |f| %>
+    
     <%= f.label :email %>
 
     <%= f.email_field :email, class: 'form-control' %>
     <%= f.label :password %>
 
     <%= f.password_field :password, class: 'form-control' %>
+
+    <div class="form-check">
+      <%= f.check_box :remember_me, class:"form-check-input", value:"" %> 
+      <%= f.label :remember_me, "Remember me on this computer", class:"form-check-label"%>
+    </div>
+
     <%= f.submit "Log in", class: "btn btn-primary", style: "margin-top: 5px" %>
     <% end %>
 

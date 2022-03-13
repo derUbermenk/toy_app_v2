@@ -4,7 +4,12 @@
     <%= render partial: 'toy', collection: @toys %>
   </div>
 
+  <hr>
+
   <div class="d-flex justify-content-center" style="padding: 2rem">
-    <%= link_to 'Add toy', new_toy_path, class: "btn btn-primary" %>
+    <%= link_to new_toy_path, class: "btn border" do %>
+      <%= image_tag 'truck.svg', class: "button-icon" %>
+      Add toy
+    <% end %>
   </div>
 </div>
