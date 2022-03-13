@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  resources :users, except: :index
+  resources :users
 
   resources :toys
   delete '/:id/image', to: 'toys#destroy_image', as: 'delete_image'

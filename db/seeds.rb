@@ -7,6 +7,24 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 require 'faker'
 
+# create admin
+User.create!(
+  name: 'Admin User',
+  email: 'admin@email.com',
+  password: 'password',
+  password_confirmation: 'password',
+  admin: true
+)
+
+# create non admin user
+User.create!(
+  name: 'Not Admin',
+  email: 'notadmin@email.com',
+  password: 'password',
+  password_confirmation: 'password',
+  admin: false 
+)
+
 # create 5 users
 5.times do
   
@@ -18,7 +36,8 @@ require 'faker'
     name:  name,
     email: email,
     password: password,
-    password_confirmation: password
+    password_confirmation: password,
+    admin: false 
   )
 end
 

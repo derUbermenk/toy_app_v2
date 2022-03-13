@@ -4,4 +4,8 @@ module UsersHelper
     gravatar_id = Digest::MD5::hexdigest(user.email.downcase)
     gravatar_url = "https://secure.gravatar.com/avatar/#{gravatar_id}?d=robohash&s=#{size}"
   end
+
+  def is_current_user?
+    user == current_user
+  end
 end

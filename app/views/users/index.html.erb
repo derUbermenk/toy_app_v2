@@ -1,0 +1,15 @@
+<div class="container" id="users">
+    <div class="row row justify-content-md-center mt-3 mb-5 py-2 border position-relative">
+      <div class="col-1 d-flex justify-content-end align-self-center">
+        <%= image_tag gravatar_url(current_user), class: "border user-image", style:"border-radius: 50%;" %> 
+      </div>
+      <div class="col align-self-center">
+        <div class="fw-bold" id="username"><%= current_user.name %></div>
+        <div class="text-muted small em fst-italic" id="email"> <sup><%= current_user.email %></sup> </div>
+      </div>
+      <a href="<%= url_for(current_user) %>" class="stretched-link"></a>
+    </div> 
+
+
+  <%= render @users %>
+</div>

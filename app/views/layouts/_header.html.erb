@@ -1,7 +1,7 @@
 <% unless (controller_name == 'sessions') || (controller_name == 'users' && action_name == 'new') %>
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
   <div class="container-fluid">
-    <a class="navbar-brand fw-bold" href="#">
+    <a class="navbar-brand fw-bold" href=<%= url_for(root_path) %>>
       <%= image_tag 'logo.svg' %>
       Toy App
     </a>
@@ -21,6 +21,7 @@
           %>
           <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
             <%= link_to 'Account', profile_path, class: 'dropdown-item' %>
+            <%= link_to 'Other Users', users_path, class: 'dropdown-item' %>
             <li><hr class="dropdown-divider"></li>
             <%= link_to 'Log Out', logout_path, method: :delete, class: 'dropdown-item' %>
           </ul>
